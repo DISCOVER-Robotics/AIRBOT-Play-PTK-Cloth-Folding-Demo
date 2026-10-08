@@ -36,7 +36,7 @@ Do not replace these components with the V5.2 `arm_sdk` or `airbot-arm` workflow
 
 ## Quick start
 
-1. Install the workstation according to [the installation guide](assets/cloth-folding-workstation-installation.pptx).
+1. Download [the workstation installation guide (PPTX)](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx) and open it in PowerPoint, WPS Office, or LibreOffice Impress to install the workstation.
 2. Clone [Openpi_RL](https://github.com/Robot-K/Openpi_RL) into `$HOME/tv_fold_demo`.
 3. Install the 5.1.6 robot software and configure the three camera device IDs in `Openpi_RL/examples/airbot/robot_config.py`.
 4. Download the policy and set `CHECKPOINT_DIR` in `Openpi_RL/examples/airbot/cmds/serve_policy.sh`.
@@ -69,7 +69,7 @@ In the policy terminal, use `UV_PYTHON=3.11 bash serve_policy.sh`. Before infere
 | Pre-trained policy | [Hugging Face model](https://huggingface.co/xiaoleezuishuai/policy-v3-wospatiodelta-iter4-tv2-280000) |
 | Optional training data | [Hugging Face dataset](https://huggingface.co/datasets/xiaoleezuishuai/airbot-fold-cloth-mcap) |
 | Full reproduction guide | [PDF](assets/cloth-folding-reproduction-guide.pdf) |
-| Workstation installation guide | [PPTX](assets/cloth-folding-workstation-installation.pptx) |
+| Workstation installation guide | [Download PPTX](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx) |
 | AIRBOT Play 5.1.6 release | [Changelog](https://docs.discover-robotics.com/document/airbot-play/changelog.html#20250623) |
 | PI0.5 reproduction | [Documentation](https://docs.discover-robotics.com/document/airbot-play/hardware-driver/tutorials/model-reproduction/pi0.5.html) |
 

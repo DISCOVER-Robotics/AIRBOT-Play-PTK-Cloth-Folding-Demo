@@ -34,7 +34,7 @@
 
 ## 快速开始
 
-1. 按照[工站安装说明](assets/cloth-folding-workstation-installation.pptx)完成工站安装。
+1. 下载[工站安装说明（PPTX）](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx)，使用 PowerPoint、WPS 或 LibreOffice Impress 打开，按照说明完成工站安装。
 2. 将 [Openpi_RL](https://github.com/Robot-K/Openpi_RL) 克隆至 `$HOME/tv_fold_demo`。
 3. 安装 5.1.6 机械臂软件，并在 `Openpi_RL/examples/airbot/robot_config.py` 配置三个相机设备号。
 4. 下载模型权重，并在 `Openpi_RL/examples/airbot/cmds/serve_policy.sh` 中设置 `CHECKPOINT_DIR`。
@@ -67,7 +67,7 @@ airbot_fsm -i can1 -p 50053
 | 预训练策略 | [Hugging Face 模型](https://huggingface.co/xiaoleezuishuai/policy-v3-wospatiodelta-iter4-tv2-280000) |
 | 可选训练数据 | [Hugging Face 数据集](https://huggingface.co/datasets/xiaoleezuishuai/airbot-fold-cloth-mcap) |
 | 完整复现指南 | [PDF](assets/cloth-folding-reproduction-guide.pdf) |
-| 工站安装说明 | [PPTX](assets/cloth-folding-workstation-installation.pptx) |
+| 工站安装说明 | [下载 PPTX](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx) |
 | AIRBOT Play 5.1.6 发布说明 | [更新日志](https://docs.discover-robotics.com/document/airbot-play/changelog.html#20250623) |
 | PI0.5 复现文档 | [官网文档](https://docs.discover-robotics.com/document/airbot-play/hardware-driver/tutorials/model-reproduction/pi0.5.html) |
 
