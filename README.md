@@ -1,5 +1,7 @@
 # AIRBOT Play PTK Cloth Folding Demo
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 This repository documents the reproduction of a dual-arm AIRBOT Play demonstration that folds a plain M/L short-sleeve T-shirt with a PI0.5 policy.
 
 ## Demo overview
