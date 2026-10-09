@@ -11,6 +11,8 @@
 | 电视机抗干扰工站 | 展示策略面对动态视觉背景时的适应能力 | 台面下方安装电视机，并使用 8 mm 透明玻璃覆盖 |
 | 白色桌面工站 | 快速部署和常规展示 | 白色桌面不小于 1.7 m × 1.2 m，并使用 6-8 mm 玻璃覆盖 |
 
+![电视机抗干扰叠衣服工站](assets/workstation-overview.png)
+
 ## 硬件要求
 
 - 两台配备夹爪的 AIRBOT Play
@@ -19,6 +21,36 @@
 - 纯色 M/L 短袖 T 恤
 
 相机设备号必须按以下顺序配置：环境相机、左腕相机、右腕相机。
+
+### 机械臂与腕部相机安装
+
+按照复现指南准备机械臂、夹爪、线缆和安装配件：
+
+![机械臂组件与安装配件](assets/arm-components.png)
+
+安装支架和夹爪前，确认法兰朝向：
+
+![法兰朝向参考](assets/flange-orientation.png)
+
+按图安装腕部相机支架和夹爪，再检查相机安装状态及线缆走向：
+
+| 安装示意 | 腕部相机安装完成 |
+| --- | --- |
+| ![腕部相机安装示意](assets/wrist-camera-installation.png) | ![腕部相机安装完成](assets/wrist-camera-assembled.png) |
+
+### 环境相机安装
+
+参考正面和侧面视图检查支架位置，具体尺寸以原始安装指南为准。
+
+| 正面视图 | 侧面视图 |
+| --- | --- |
+| <img src="assets/environment-camera-front.png" alt="环境相机支架正面视图" width="360"> | <img src="assets/environment-camera-side.png" alt="环境相机支架侧面视图" width="360"> |
+
+| 支架高度参考 | 相机安装高度参考 |
+| --- | --- |
+| <img src="assets/environment-camera-height.png" alt="环境相机支架高度参考" width="360"> | <img src="assets/camera-mount-height.png" alt="相机安装高度参考" width="360"> |
+
+以上安装图片提取自下方链接中的原始复现 PDF。
 
 ## 软件版本基线
 
@@ -50,6 +82,10 @@ uvx --from 'huggingface_hub>=1.0' hf download \
   --local-dir "$HOME/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
 ```
 
+原始指南中的相机配置如下。截图中的相机编号仅为示例，不是固定设备号；请识别实际设备，并保持环境、左腕、右腕的顺序。
+
+![robot_config.py 中的相机配置参考](assets/camera-configuration.png)
+
 确认 CAN 设备号后，启动机械臂服务：
 
 ```bash
@@ -58,6 +94,8 @@ airbot_fsm -i can1 -p 50053
 ```
 
 策略终端中使用 `UV_PYTHON=3.11 bash serve_policy.sh`。启动推理前将 `INTERPOLATE=true`、`DAGGER=false` 写入配置，然后运行 `bash infer_async.sh`。推理快捷键：`Enter` 开始、`D` 舍弃、`Q` 退出。
+
+![INTERPOLATE 与 DAGGER 推理配置](assets/inference-configuration.png)
 
 ## 资源
 

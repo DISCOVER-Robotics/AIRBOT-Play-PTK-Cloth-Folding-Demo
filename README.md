@@ -13,6 +13,8 @@ Two workstation options use the same robot, camera, and policy configuration:
 | TV-backed workstation | Demonstrating robustness to dynamic visual backgrounds | A TV below the work surface and an 8 mm transparent glass cover |
 | White-table workstation | Fast deployment and standard demonstrations | A white table at least 1.7 m by 1.2 m, with a 6-8 mm glass cover |
 
+![TV-backed cloth-folding workstation](assets/workstation-overview.png)
+
 ## Hardware
 
 - Two AIRBOT Play arms with grippers
@@ -21,6 +23,36 @@ Two workstation options use the same robot, camera, and policy configuration:
 - Solid-color M/L short-sleeve T-shirt
 
 Connect the cameras in this exact order: environment camera, left wrist camera, right wrist camera.
+
+### Arm and wrist camera installation
+
+Prepare the arm, gripper, cables, and mounting hardware shown in the reproduction guide:
+
+![Arm components and mounting hardware](assets/arm-components.png)
+
+Check the flange orientation before installing the bracket and gripper:
+
+![Flange orientation reference](assets/flange-orientation.png)
+
+Install the wrist camera bracket and gripper as illustrated, then check the assembled camera and cable routing:
+
+| Installation | Assembled wrist camera |
+| --- | --- |
+| ![Wrist camera installation](assets/wrist-camera-installation.png) | ![Assembled wrist camera](assets/wrist-camera-assembled.png) |
+
+### Environment camera installation
+
+Use the front and side views to check the stand placement. Follow the original installation guide for dimensions.
+
+| Front view | Side view |
+| --- | --- |
+| <img src="assets/environment-camera-front.png" alt="Environment camera stand front view" width="360"> | <img src="assets/environment-camera-side.png" alt="Environment camera stand side view" width="360"> |
+
+| Stand height reference | Camera mounting height reference |
+| --- | --- |
+| <img src="assets/environment-camera-height.png" alt="Environment camera stand height reference" width="360"> | <img src="assets/camera-mount-height.png" alt="Camera mounting height reference" width="360"> |
+
+These installation images are extracted from the original reproduction PDF linked below.
 
 ## Software baseline
 
@@ -52,6 +84,10 @@ uvx --from 'huggingface_hub>=1.0' hf download \
   --local-dir "$HOME/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
 ```
 
+The original guide shows the camera configuration below. Camera indices in the screenshot are examples, not fixed assignments; detect your actual devices and keep the order environment, left wrist, right wrist.
+
+![Camera configuration reference in robot_config.py](assets/camera-configuration.png)
+
 Start the arm services after verifying the CAN device assignments:
 
 ```bash
@@ -60,6 +96,8 @@ airbot_fsm -i can1 -p 50053
 ```
 
 In the policy terminal, use `UV_PYTHON=3.11 bash serve_policy.sh`. Before inference, set `INTERPOLATE=true` and `DAGGER=false`, then run `bash infer_async.sh`. The inference controls are `Enter` to start, `D` to discard, and `Q` to exit.
+
+![Inference configuration with INTERPOLATE and DAGGER settings](assets/inference-configuration.png)
 
 ## Resources
 
