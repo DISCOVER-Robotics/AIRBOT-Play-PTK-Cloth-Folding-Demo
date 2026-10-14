@@ -245,7 +245,14 @@ The order must be environment, left wrist, right wrist. The PDF screenshot and p
 
 ## 5. Configure policy serving and inference
 
-The PDF alternates between `scripts/cmds` and `examples/airbot/cmds`. The current upstream repository has the scripts in **`scripts/cmds/`**. Edit the CONFIG section of `$HOME/tv_fold_demo/Openpi_RL/scripts/cmds/serve_policy.sh`:
+From `$HOME/tv_fold_demo`, enter the policy scripts directory, then edit the CONFIG section of `serve_policy.sh`:
+
+```bash
+cd "$HOME/tv_fold_demo"
+cd Openpi_RL/scripts/cmds
+```
+
+Set the following values in `serve_policy.sh`:
 
 ```bash
 CHECKPOINT_DIR="${HOME}/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"

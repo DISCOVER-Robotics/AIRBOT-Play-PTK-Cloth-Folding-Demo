@@ -243,7 +243,14 @@ camera_index: list[int | str] = [4, 6, 8]
 
 ## 五、配置模型服务与推理脚本
 
-原 PDF 同时出现 `scripts/cmds` 和 `examples/airbot/cmds` 两种路径。已核对当前上游仓库，脚本位于 **`scripts/cmds/`**。编辑 `$HOME/tv_fold_demo/Openpi_RL/scripts/cmds/serve_policy.sh` 的 CONFIG 区：
+先从 `$HOME/tv_fold_demo` 进入策略脚本目录，再编辑 `serve_policy.sh` 的 CONFIG 区：
+
+```bash
+cd "$HOME/tv_fold_demo"
+cd Openpi_RL/scripts/cmds
+```
+
+在 `serve_policy.sh` 中设置以下参数：
 
 ```bash
 CHECKPOINT_DIR="${HOME}/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
