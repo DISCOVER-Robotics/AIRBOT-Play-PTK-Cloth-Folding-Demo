@@ -19,13 +19,13 @@ Two workstation options use the same robot, camera, and policy configuration:
 
 ### 1.2 TV-backed workstation
 
+![TV-backed cloth-folding workstation](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/workstation-overview.png)
+
 The TV workstation uses wood panels, aluminum profiles, brackets, connecting plates, and fasteners. The reference display is a Xiaomi S MiniLED 75-inch low-reflection TV with 1008 dimming zones; a comparable display may be used. The glass surface measures **1650 × 1060 × 8 mm**. The TV sits beneath the glass and plays dynamic or colored content while the robot folds on the glass. [Original TV purchasing reference](https://detail.tmall.com/item.htm?id=1039475756408).
 
 ### 1.3 White-table workstation
 
 The white-table option has no TV and no specified table height; its glass is 6–8 mm thick. Both options use the same arms, cameras, model, and relative mounting arrangement. [Original table purchasing reference](https://item.taobao.com/item.htm?id=731805103039).
-
-![TV-backed cloth-folding workstation](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/workstation-overview.png)
 
 ### 1.4 Required hardware
 
@@ -42,80 +42,39 @@ Connect the cameras in this exact order: environment camera, left wrist camera, 
 
 Prepare the arm, gripper, cables, and mounting hardware shown in the reproduction guide:
 
-![Arm components and mounting hardware](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/arm-components.png)
+![Arm components and mounting hardware](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/arm-components.png)
 
 Check the flange orientation before installing the bracket and gripper:
 
 Position the marking downward as specified in the original guide.
 
-![Flange orientation reference](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/flange-orientation.png)
+![Flange orientation reference](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/flange-orientation.png)
 
 Install the wrist camera bracket and gripper as illustrated, then check the assembled camera and cable routing:
 
-| Installation | Assembled wrist camera |
-| --- | --- |
-| ![Wrist camera installation](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/wrist-camera-installation.png) | ![Assembled wrist camera](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/wrist-camera-assembled.png) |
+![Wrist camera installation](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/wrist-camera-installation.png)
+
+![Assembled wrist camera](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/wrist-camera-assembled.png)
 
 ### 1.6 Hardware placement references
 
-Use the front and side views to check the stand placement. Follow the original installation guide for dimensions.
+The following images follow the order in the original PDF. Use the supplied bracket models and installation guide for mounting details.
 
-| Front view | Side view |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/environment-camera-front.png" alt="Environment camera stand front view" width="360"> | <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/environment-camera-side.png" alt="Environment camera stand side view" width="360"> |
+#### 1.6.1 Overall stand installation
 
-| Stand height reference | Camera mounting height reference |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/environment-camera-height.png" alt="Environment camera stand height reference" width="360"> | <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/camera-mount-height.png" alt="Camera mounting height reference" width="360"> |
+![Overall stand installation](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/environment-camera-front.png)
 
-These installation images are extracted from the original reproduction PDF linked below.
+#### 1.6.2 Environment camera
 
-## Software baseline
+![Environment camera placement (side view)](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/environment-camera-side.png)
 
-The supplied source documents AIRBOT Play **5.1.6** as its software baseline:
+![Environment camera stand height reference](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/environment-camera-height.png)
 
-- `airbot-configure`
-- `airbot_py`
-- `airbot_fsm`
-- Conda Python 3.10 for the robot service and `uv` Python 3.11 for policy serving
-- Ubuntu 22.04 or later and an NVIDIA RTX 4090 (24 GB) or RTX 5090 (32 GB)
-
-Do not replace these components with the V5.2 `arm_sdk` or `airbot-arm` workflow.
-
-## Workflow overview
-
-1. Download [the workstation installation guide (PPTX)](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx) and open it in PowerPoint, WPS Office, or LibreOffice Impress to install the workstation.
-2. Clone [Openpi_RL](https://github.com/Robot-K/Openpi_RL) into `$HOME/tv_fold_demo`.
-3. Install the 5.1.6 robot software and configure the three camera device IDs in `Openpi_RL/examples/airbot/robot_config.py`.
-4. Download the policy and set `CHECKPOINT_DIR` in `Openpi_RL/scripts/cmds/serve_policy.sh`.
-5. Start the two arm services, the policy server, and then `infer_async.sh`.
-
-```bash
-mkdir -p "$HOME/tv_fold_demo"
-cd "$HOME/tv_fold_demo"
-git clone https://github.com/Robot-K/Openpi_RL.git
-
-uvx --from 'huggingface_hub>=1.0' hf download \
-  xiaoleezuishuai/policy-v3-wospatiodelta-iter4-tv2-280000 \
-  --local-dir "$HOME/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
-```
-
-The original guide shows the camera configuration below. Camera indices in the screenshot are examples, not fixed assignments; detect your actual devices and keep the order environment, left wrist, right wrist.
-
-![Camera configuration reference in robot_config.py](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/camera-configuration.png)
-
-Start the arm services after verifying the CAN device assignments:
-
-```bash
-airbot_fsm -i can0 -p 50051
-airbot_fsm -i can1 -p 50053
-```
-
-In the policy terminal, use `UV_PYTHON=3.11 bash serve_policy.sh`. Before inference, set `INTERPOLATE=true` and `DAGGER=false`, then run `bash infer_async.sh`. The inference controls are `Enter` to start, `D` to discard, and `Q` to exit.
-
-![Inference configuration with INTERPOLATE and DAGGER settings](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/inference-configuration.png)
+![Camera mounting height reference](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/camera-mount-height.png)
 
 ## 2. Project repository and baseline
+
+Source repository: [Robot-K/Openpi_RL](https://github.com/Robot-K/Openpi_RL).
 
 ### 2.1 System requirements
 
@@ -207,6 +166,16 @@ python --version
 
 #### 4.2.1 Arm software environment
 
+The supplied source documents AIRBOT Play **5.1.6** as its software baseline:
+
+- `airbot-configure`
+- `airbot_py`
+- `airbot_fsm`
+- Conda Python 3.10 for the robot service and `uv` Python 3.11 for policy serving
+- Ubuntu 22.04 or later and an NVIDIA RTX 4090 (24 GB) or RTX 5090 (32 GB)
+
+Do not replace these components with the V5.2 `arm_sdk` or `airbot-arm` workflow.
+
 Docker installation commands from the PDF:
 
 ```bash
@@ -272,6 +241,8 @@ camera_index: list[int | str] = [4, 6, 8]
 
 The order must be environment, left wrist, right wrist. The PDF screenshot and prose use different example indices; neither substitutes for detecting your devices.
 
+![robot_config.py camera configuration (original PDF page 14)](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/camera-configuration.png)
+
 ## 5. Configure policy serving and inference
 
 The PDF alternates between `scripts/cmds` and `examples/airbot/cmds`. The current upstream repository has the scripts in **`scripts/cmds/`**. Edit the CONFIG section of `$HOME/tv_fold_demo/Openpi_RL/scripts/cmds/serve_policy.sh`:
@@ -315,6 +286,8 @@ bash serve_policy.sh
 
 First edit `infer_async.sh` in the same directory:
 
+![Inference script configuration (original PDF page 15)](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/inference-configuration.png)
+
 ```bash
 INTERPOLATE=true
 DAGGER=false
@@ -339,7 +312,7 @@ The PDF lists `叠衣支架模型.zip`, `叠衣台架安装说明.pptx`, `叠衣
 | Implementation | [Robot-K/Openpi_RL](https://github.com/Robot-K/Openpi_RL) |
 | Pre-trained policy | [Hugging Face model](https://huggingface.co/xiaoleezuishuai/policy-v3-wospatiodelta-iter4-tv2-280000) |
 | Optional training data | [Hugging Face dataset](https://huggingface.co/datasets/xiaoleezuishuai/airbot-fold-cloth-mcap) |
-| Full reproduction guide | [PDF](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/cloth-folding-reproduction-guide.pdf) |
+| Full reproduction guide | [PDF](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/cloth-folding-reproduction-guide.pdf) |
 | Workstation installation guide | [Download PPTX](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx) |
 | AIRBOT Play 5.1.6 release | [Changelog](https://docs.discover-robotics.com/document/airbot-play/changelog.html#v5.1.6) |
 | PI0.5 reproduction | [Documentation](https://docs.discover-robotics.com/document/airbot-play/hardware-driver/tutorials/model-reproduction/pi0.5.html) |

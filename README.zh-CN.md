@@ -17,13 +17,13 @@
 
 ### 1.2 方案 A：电视机抗干扰版
 
+![电视机抗干扰叠衣服工站](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/workstation-overview.png)
+
 电视机方案使用木板、铝型材、角码、连接板与紧固件搭建台架；参考电视为小米 S MiniLED 75 英寸低反屏、1008 分区，也可选择尺寸和显示效果相近的设备。玻璃板尺寸为 **1650 × 1060 × 8 mm**。电视机位于台面下方，衣服在透明玻璃上操作，用于展示动态、彩色背景下的适应能力。[原文电视采购参考](https://detail.tmall.com/item.htm?id=1039475756408)。
 
 ### 1.3 方案 B：白色桌面简易版
 
 白色桌面方案不安装电视机，桌面高度不限，玻璃厚度为 6–8 mm；两种方案的机械臂、相机、模型及相对安装关系相同。[原文桌子采购参考](https://item.taobao.com/item.htm?id=731805103039)。
-
-![电视机抗干扰叠衣服工站](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/workstation-overview.png)
 
 ### 1.4 方案所需硬件
 
@@ -40,80 +40,39 @@
 
 按照复现指南准备机械臂、夹爪、线缆和安装配件：
 
-![机械臂组件与安装配件](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/arm-components.png)
+![机械臂组件与安装配件](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/arm-components.png)
 
 安装支架和夹爪前，确认法兰朝向：
 
 按原文，将标志向下摆放后再安装。
 
-![法兰朝向参考](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/flange-orientation.png)
+![法兰朝向参考](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/flange-orientation.png)
 
 按图安装腕部相机支架和夹爪，再检查相机安装状态及线缆走向：
 
-| 安装示意 | 腕部相机安装完成 |
-| --- | --- |
-| ![腕部相机安装示意](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/wrist-camera-installation.png) | ![腕部相机安装完成](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/wrist-camera-assembled.png) |
+![腕部相机安装示意](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/wrist-camera-installation.png)
 
-### 1.6 硬件安装位置参考
+![腕部相机安装完成](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/wrist-camera-assembled.png)
 
-参考正面和侧面视图检查支架位置，具体尺寸以原始安装指南为准。
+### 1.6 硬件安装位置参考图
 
-| 正面视图 | 侧面视图 |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/environment-camera-front.png" alt="环境相机支架正面视图" width="360"> | <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/environment-camera-side.png" alt="环境相机支架侧面视图" width="360"> |
+以下图片按原 PDF 的顺序展示安装效果。具体固定方式以配套支架模型和安装说明为准。
 
-| 支架高度参考 | 相机安装高度参考 |
-| --- | --- |
-| <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/environment-camera-height.png" alt="环境相机支架高度参考" width="360"> | <img src="https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/camera-mount-height.png" alt="相机安装高度参考" width="360"> |
+#### 1.6.1 台架整体安装效果
 
-以上安装图片提取自下方链接中的原始复现 PDF。
+![台架整体安装效果](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/environment-camera-front.png)
 
-## 软件版本基线
+#### 1.6.2 环境相机
 
-原始资料使用 AIRBOT Play **5.1.6**，此处记录其版本基线：
+![环境相机安装位置（侧面）](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/environment-camera-side.png)
 
-- `airbot-configure`
-- `airbot_py`
-- `airbot_fsm`
-- 机械臂服务使用 Conda Python 3.10，策略服务使用 `uv` Python 3.11
-- Ubuntu 22.04 或更高版本，以及 NVIDIA RTX 4090（24 GB）或 RTX 5090（32 GB）
+![环境相机支架高度参考](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/environment-camera-height.png)
 
-请勿将本流程替换为 V5.2 的 `arm_sdk` 或 `airbot-arm` 工作流。
-
-## 流程概览
-
-1. 下载[工站安装说明（PPTX）](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx)，使用 PowerPoint、WPS 或 LibreOffice Impress 打开，按照说明完成工站安装。
-2. 将 [Openpi_RL](https://github.com/Robot-K/Openpi_RL) 克隆至 `$HOME/tv_fold_demo`。
-3. 安装 5.1.6 机械臂软件，并在 `Openpi_RL/examples/airbot/robot_config.py` 配置三个相机设备号。
-4. 下载模型权重，并在 `Openpi_RL/scripts/cmds/serve_policy.sh` 中设置 `CHECKPOINT_DIR`。
-5. 启动两个机械臂服务、策略服务，最后启动 `infer_async.sh`。
-
-```bash
-mkdir -p "$HOME/tv_fold_demo"
-cd "$HOME/tv_fold_demo"
-git clone https://github.com/Robot-K/Openpi_RL.git
-
-uvx --from 'huggingface_hub>=1.0' hf download \
-  xiaoleezuishuai/policy-v3-wospatiodelta-iter4-tv2-280000 \
-  --local-dir "$HOME/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
-```
-
-原始指南中的相机配置如下。截图中的相机编号仅为示例，不是固定设备号；请识别实际设备，并保持环境、左腕、右腕的顺序。
-
-![robot_config.py 中的相机配置参考](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/camera-configuration.png)
-
-确认 CAN 设备号后，启动机械臂服务：
-
-```bash
-airbot_fsm -i can0 -p 50051
-airbot_fsm -i can1 -p 50053
-```
-
-策略终端中使用 `UV_PYTHON=3.11 bash serve_policy.sh`。启动推理前将 `INTERPOLATE=true`、`DAGGER=false` 写入配置，然后运行 `bash infer_async.sh`。推理快捷键：`Enter` 开始、`D` 舍弃、`Q` 退出。
-
-![INTERPOLATE 与 DAGGER 推理配置](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/inference-configuration.png)
+![相机安装高度参考](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/camera-mount-height.png)
 
 ## 二、项目仓库与版本基线
+
+代码仓库：[Robot-K/Openpi_RL](https://github.com/Robot-K/Openpi_RL)。
 
 ### 2.1 系统要求
 
@@ -205,6 +164,16 @@ python --version
 
 #### 4.2.1 机械臂软件环境
 
+原始资料使用 AIRBOT Play **5.1.6**，此处记录其版本基线：
+
+- `airbot-configure`
+- `airbot_py`
+- `airbot_fsm`
+- 机械臂服务使用 Conda Python 3.10，策略服务使用 `uv` Python 3.11
+- Ubuntu 22.04 或更高版本，以及 NVIDIA RTX 4090（24 GB）或 RTX 5090（32 GB）
+
+请勿将本流程替换为 V5.2 的 `arm_sdk` 或 `airbot-arm` 工作流。
+
 原文 Docker 安装命令如下：
 
 ```bash
@@ -270,6 +239,8 @@ camera_index: list[int | str] = [4, 6, 8]
 
 顺序必须是环境、左腕、右腕。原文截图中的编号与文字示例不同，均不能替代实际设备识别。
 
+![robot_config.py 相机配置（原 PDF 第 14 页）](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/camera-configuration.png)
+
 ## 五、配置模型服务与推理脚本
 
 原 PDF 同时出现 `scripts/cmds` 和 `examples/airbot/cmds` 两种路径。已核对当前上游仓库，脚本位于 **`scripts/cmds/`**。编辑 `$HOME/tv_fold_demo/Openpi_RL/scripts/cmds/serve_policy.sh` 的 CONFIG 区：
@@ -313,6 +284,8 @@ bash serve_policy.sh
 
 先编辑同目录的 `infer_async.sh`：
 
+![推理脚本配置（原 PDF 第 15 页）](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/inference-configuration.png)
+
 ```bash
 INTERPOLATE=true
 DAGGER=false
@@ -337,7 +310,7 @@ bash infer_async.sh
 | 实现代码 | [Robot-K/Openpi_RL](https://github.com/Robot-K/Openpi_RL) |
 | 预训练策略 | [Hugging Face 模型](https://huggingface.co/xiaoleezuishuai/policy-v3-wospatiodelta-iter4-tv2-280000) |
 | 可选训练数据 | [Hugging Face 数据集](https://huggingface.co/datasets/xiaoleezuishuai/airbot-fold-cloth-mcap) |
-| 完整复现指南 | [PDF](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/feat/add-demo-content/assets/cloth-folding-reproduction-guide.pdf) |
+| 完整复现指南 | [PDF](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/cloth-folding-reproduction-guide.pdf) |
 | 工站安装说明 | [下载 PPTX](https://github.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/raw/refs/heads/feat/add-demo-content/assets/cloth-folding-workstation-installation.pptx) |
 | AIRBOT Play 5.1.6 发布说明 | [更新日志](https://docs.discover-robotics.com/document/airbot-play/changelog.html#v5.1.6) |
 | PI0.5 复现文档 | [官网文档](https://docs.discover-robotics.com/document/airbot-play/hardware-driver/tutorials/model-reproduction/pi0.5.html) |
