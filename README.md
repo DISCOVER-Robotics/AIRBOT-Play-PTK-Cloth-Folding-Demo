@@ -4,7 +4,7 @@
 
 This repository documents the reproduction of a dual-arm AIRBOT Play demonstration that folds a plain M/L short-sleeve T-shirt with a PI0.5 policy.
 
-This README follows the seven parts of the original PDF, including installation, downloads, configuration, and execution. Source omissions and path corrections are identified explicitly. No hardware run was performed during this documentation update.
+This guide covers workstation installation, environment setup, data and model downloads, configuration, and execution.
 
 ## 1. Workstation options and hardware installation
 
@@ -21,11 +21,11 @@ Two workstation options use the same robot, camera, and policy configuration:
 
 ![TV-backed cloth-folding workstation](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/workstation-overview.png)
 
-The TV workstation uses wood panels, aluminum profiles, brackets, connecting plates, and fasteners. The reference display is a Xiaomi S MiniLED 75-inch low-reflection TV with 1008 dimming zones; a comparable display may be used. The glass surface measures **1650 × 1060 × 8 mm**. The TV sits beneath the glass and plays dynamic or colored content while the robot folds on the glass. [Original TV purchasing reference](https://detail.tmall.com/item.htm?id=1039475756408).
+The TV workstation uses wood panels, aluminum profiles, brackets, connecting plates, and fasteners. The reference display is a Xiaomi S MiniLED 75-inch low-reflection TV with 1008 dimming zones; a comparable display may be used. The glass surface measures **1650 × 1060 × 8 mm**. The TV sits beneath the glass and plays dynamic or colored content while the robot folds on the glass. [TV purchasing reference](https://detail.tmall.com/item.htm?id=1039475756408).
 
 ### 1.3 White-table workstation
 
-The white-table option has no TV and no specified table height; its glass is 6–8 mm thick. Both options use the same arms, cameras, model, and relative mounting arrangement. [Original table purchasing reference](https://item.taobao.com/item.htm?id=731805103039).
+The white-table option has no TV and no specified table height; its glass is 6–8 mm thick. Both options use the same arms, cameras, model, and relative mounting arrangement. [Table purchasing reference](https://item.taobao.com/item.htm?id=731805103039).
 
 ### 1.4 Required hardware
 
@@ -34,7 +34,7 @@ The white-table option has no TV and no specified table height; its glass is 6�
 - One 1080p environment camera, 2.7 mm lens, 120-degree field of view
 - Solid-color M/L short-sleeve T-shirt
 
-Also prepare the matching data cables, gripper cables, and power supplies. The source specifies distortion-free wrist and environment cameras.
+Also prepare the matching data cables, gripper cables, and power supplies. Both wrist and environment cameras must be distortion-free.
 
 Connect the cameras in this exact order: environment camera, left wrist camera, right wrist camera.
 
@@ -46,7 +46,7 @@ Prepare the arm, gripper, cables, and mounting hardware shown in the reproductio
 
 Check the flange orientation before installing the bracket and gripper:
 
-Position the marking downward as specified in the original guide.
+Position the marking downward before installation.
 
 ![Flange orientation reference](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/flange-orientation.png)
 
@@ -58,7 +58,7 @@ Install the wrist camera bracket and gripper as illustrated, then check the asse
 
 ### 1.6 Hardware placement references
 
-The following images follow the order in the original PDF. Use the supplied bracket models and installation guide for mounting details.
+The following images show the stand and environment camera installation. Use the supplied bracket models and installation guide for mounting details.
 
 #### 1.6.1 Overall stand installation
 
@@ -78,7 +78,7 @@ Source repository: [Robot-K/Openpi_RL](https://github.com/Robot-K/Openpi_RL).
 
 ### 2.1 System requirements
 
-Ubuntu ≥22.04; Conda Python 3.10 for arm services and `uv` Python 3.11 for the policy server. The PDF specifies RTX 4090 24 GB or RTX 5090 32 GB; compatibility with other GPUs is not established by that document.
+Ubuntu ≥22.04; Conda Python 3.10 for arm services and `uv` Python 3.11 for the policy server. Use an RTX 4090 24 GB or RTX 5090 32 GB GPU.
 
 ### 2.2 Install basic tools and uv
 
@@ -95,7 +95,7 @@ lsusb --version | head -n 1
 nvidia-smi
 ```
 
-All checks should return normally. Camera inspection also requires `v4l-utils`: `sudo apt install -y v4l-utils`. This dependency is an addition to the PDF.
+All checks should return normally. Camera inspection also requires `v4l-utils`: `sudo apt install -y v4l-utils`.
 
 ### 2.3 Download the repository
 
@@ -105,7 +105,7 @@ cd "$HOME/tv_fold_demo"
 git clone https://github.com/Robot-K/Openpi_RL.git
 ```
 
-The PDF does not pin a Git commit. The current upstream default branch is `master` and may change. Record `git -C "$HOME/tv_fold_demo/Openpi_RL" rev-parse HEAD` for reproducibility.
+The repository's default branch is `master`. Record `git -C "$HOME/tv_fold_demo/Openpi_RL" rev-parse HEAD` for reproducibility.
 
 ## 3. Data and model downloads
 
@@ -139,7 +139,7 @@ uvx --from 'huggingface_hub>=1.0' hf download \
 ls "$HOME/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
 ```
 
-The PDF recommends clearing incomplete cache files after interrupted downloads. First retry the download; if cleanup is necessary, target only confirmed incomplete cache files and preserve downloaded weights.
+If a download is interrupted, first retry the download; if cleanup is necessary, target only confirmed incomplete cache files and preserve downloaded weights.
 
 ## 4. Environment setup and preparation
 
@@ -166,7 +166,7 @@ python --version
 
 #### 4.2.1 Arm software environment
 
-The supplied source documents AIRBOT Play **5.1.6** as its software baseline:
+This demo uses AIRBOT Play **5.1.6**:
 
 - `airbot-configure`
 - `airbot_py`
@@ -176,7 +176,7 @@ The supplied source documents AIRBOT Play **5.1.6** as its software baseline:
 
 Do not replace these components with the V5.2 `arm_sdk` or `airbot-arm` workflow.
 
-Docker installation commands from the PDF:
+Install Docker:
 
 ```bash
 sudo apt-get update
@@ -190,7 +190,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 docker ps
 ```
 
-The PDF says to reboot after configuring user groups but omits the group command. If `docker ps` reports a permission error, follow Docker's official permission setup and log in again, or check using `sudo docker ps`.
+If `docker ps` reports a permission error, follow Docker's official permission setup and log in again, or check using `sudo docker ps`.
 
 Obtain matching drivers and SDK from the [AIRBOT Play 5.1.6 historical release](https://docs.discover-robotics.com/document/airbot-play/changelog.html#v5.1.6). Run from the directory containing the downloaded packages:
 
@@ -204,7 +204,7 @@ python -m pip list | grep airbot
 
 #### 4.2.2 Install data-collection
 
-The PDF references `data-collection.zip`, but its embedded attachment label is not a downloadable URL. This repository does not include the archive. Obtain the original demo companion attachment and extract it to `$HOME/tv_fold_demo/data-collection`, then run:
+This repository does not include `data-collection.zip`. Obtain the demo's matching installation package and extract it to `$HOME/tv_fold_demo/data-collection`, then run:
 
 ```bash
 cd "$HOME/tv_fold_demo/data-collection"
@@ -212,7 +212,7 @@ conda activate airdc
 bash install/install.sh
 ```
 
-The PDF does not separately specify complete Openpi_RL/inference-client dependency installation. Consult the matching code's installation instructions; the command above does not establish that every dependency is installed.
+Install the inference client dependencies following the Openpi_RL repository's installation instructions.
 
 #### 4.2.3 Identify the arm interfaces
 
@@ -224,7 +224,7 @@ ip link | grep can
 
 ### 4.3 Identify cameras and inspect streams
 
-Connect environment, left wrist, and right wrist cameras. The PDF uses `v4l2-ctl --list-cameras`; standard `v4l2-ctl` uses `--list-devices`, corrected here:
+Connect the environment, left wrist, and right wrist cameras, then check device IDs and streams:
 
 ```bash
 v4l2-ctl --list-devices
@@ -239,9 +239,9 @@ Replace `4 6 8` with actual camera indices. After checking all streams, edit `$H
 camera_index: list[int | str] = [4, 6, 8]
 ```
 
-The order must be environment, left wrist, right wrist. The PDF screenshot and prose use different example indices; neither substitutes for detecting your devices.
+The order must be environment, left wrist, right wrist. Indices in screenshots and commands are examples; use your actual device IDs.
 
-![robot_config.py camera configuration (original PDF page 14)](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/camera-configuration.png)
+![robot_config.py camera configuration](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/camera-configuration.png)
 
 ## 5. Configure policy serving and inference
 
@@ -259,7 +259,7 @@ CHECKPOINT_DIR="${HOME}/tv_fold_demo/policy_v3_wospatiodelta_iter4_tv2"
 PORT=8000
 ```
 
-Keep a policy configuration matching the model. The PDF does not explicitly specify `POLICY_CONFIG`; compatibility cannot be inferred solely from the weights directory name.
+Set `POLICY_CONFIG` to the policy configuration matching the downloaded model.
 
 ## 6. Start the demo
 
@@ -293,7 +293,7 @@ bash serve_policy.sh
 
 First edit `infer_async.sh` in the same directory:
 
-![Inference script configuration (original PDF page 15)](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/inference-configuration.png)
+![Inference script configuration](https://raw.githubusercontent.com/DISCOVER-Robotics/AIRBOT-Play-PTK-Cloth-Folding-Demo/192ec11/assets/inference-configuration.png)
 
 ```bash
 INTERPOLATE=true
@@ -312,7 +312,7 @@ Controls: `Enter` to start, `D` to discard, `Q` to exit. The pretrained policy c
 
 ## 7. Attachments and resources
 
-The PDF lists `叠衣支架模型.zip`, `叠衣台架安装说明.pptx`, `叠衣支架安装说明.pptx`, and `叠衣支架0904.zip`. The provider confirmed that the two PPTX references are the same guide; this repository keeps one copy. CAD archives are not published. An embedded attachment label in the PDF does not mean that the corresponding file is available in this repository.
+Workstation attachments include `叠衣支架模型.zip`, `叠衣支架0904.zip`, and the workstation installation guide. Download the guide below and open it in PowerPoint, WPS Office, or LibreOffice Impress.
 
 | Resource | Location |
 | --- | --- |
@@ -324,4 +324,4 @@ The PDF lists `叠衣支架模型.zip`, `叠衣台架安装说明.pptx`, `叠衣
 | AIRBOT Play 5.1.6 release | [Changelog](https://docs.discover-robotics.com/document/airbot-play/changelog.html#v5.1.6) |
 | PI0.5 reproduction | [Documentation](https://docs.discover-robotics.com/document/airbot-play/hardware-driver/tutorials/model-reproduction/pi0.5.html) |
 
-The original CAD package is intentionally not included in this repository. Obtain its distribution approval before publishing design files.
+CAD bracket model archives are not included in this repository and must be obtained separately.
